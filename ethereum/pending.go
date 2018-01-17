@@ -94,7 +94,7 @@ func (p *pending) resetWork(blockchain *core.BlockChain, receiver common.Address
 	}, nil
 }
 
-func (p *pending) updateHeaderWithTimeInfo(config *params.ChainConfig, parentTime uint64, numTx uint64) {
+func (p *pending) updateHeaderWithTimeInfo(config *params.ChainConfig, parentTime int64, numTx uint64) {
 	p.mtx.Lock()
 	defer p.mtx.Unlock()
 
@@ -207,15 +207,15 @@ func (w *work) commit(blockchain *core.BlockChain, db ethdb.Database) (common.Ha
 	return blockHash, err
 }
 
-func (w *work) updateHeaderWithTimeInfo(config *params.ChainConfig, parentTime uint64, numTx uint64) {
+func (w *work) updateHeaderWithTimeInfo(config *params.ChainConfig, parentTime int64, numTx uint64) {
 	lastBlock := w.parent
 	parentHeader := &ethTypes.Header{
 		Difficulty: lastBlock.Difficulty(),
 		Number:     lastBlock.Number(),
 		Time:       lastBlock.Time(),
 	}
-	w.header.Time = new(big.Int).SetUint64(parentTime)
-	w.header.Difficulty = ethash.CalcDifficulty(config, parentTime, parentHeader)
+	w.header.Time = new(big.Int).SetInt64(parentTime)
+	w.header.Difficulty = ethash.CalcDifficulty(config, uint64(parentTime), parentHeader)
 	w.transactions = make([]*ethTypes.Transaction, 0, numTx)
 	w.receipts = make([]*ethTypes.Receipt, 0, numTx)
 	w.allLogs = make([]*ethTypes.Log, 0, numTx)
