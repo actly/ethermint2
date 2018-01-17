@@ -15,7 +15,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/params"
 
-	emtTypes "github.com/tendermint/ethermint/types"
+	emtTypes "github.com/3rdStone/ethermint2/types"
 )
 
 //----------------------------------------------------------------------

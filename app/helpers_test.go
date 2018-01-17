@@ -23,8 +23,8 @@ import (
 	"github.com/ethereum/go-ethereum/node"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/tendermint/ethermint/cmd/utils"
-	"github.com/tendermint/ethermint/ethereum"
+	"github.com/3rdStone/ethermint2/cmd/utils"
+	"github.com/3rdStone/ethermint2/ethereum"
 )
 
 var (

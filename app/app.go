@@ -10,8 +10,8 @@ import (
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/rpc"
 
-	"github.com/tendermint/ethermint/ethereum"
-	emtTypes "github.com/tendermint/ethermint/types"
+	"github.com/3rdStone/ethermint2/ethereum"
+	emtTypes "github.com/3rdStone/ethermint2/types"
 
 	abciTypes "github.com/tendermint/abci/types"
 	tmLog "github.com/tendermint/tmlibs/log"

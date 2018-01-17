@@ -15,7 +15,7 @@ import (
 	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/tendermint/ethermint/ethereum"
+	"github.com/3rdStone/ethermint2/ethereum"
 
 	abciTypes "github.com/tendermint/abci/types"
 )

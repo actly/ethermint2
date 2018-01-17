@@ -15,9 +15,9 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/log"
 
-	abciApp "github.com/tendermint/ethermint/app"
-	emtUtils "github.com/tendermint/ethermint/cmd/utils"
-	"github.com/tendermint/ethermint/ethereum"
+	abciApp "github.com/3rdStone/ethermint2/app"
+	emtUtils "github.com/3rdStone/ethermint2/cmd/utils"
+	"github.com/3rdStone/ethermint2/ethereum"
 
 	"github.com/tendermint/abci/server"
 
