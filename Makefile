@@ -8,6 +8,11 @@ VERSION_TAG=0.5.3
 
 all: install test
 
+temp:
+	@go install \
+		--ldflags "-X github.com/tendermint/ethermint/version.GitCommit=`git rev-parse HEAD`" \
+		./cmd/ethermint
+
 install: get_vendor_deps
 	@go install \
 		--ldflags "-X github.com/tendermint/ethermint/version.GitCommit=`git rev-parse HEAD`" \

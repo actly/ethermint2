@@ -1,11 +1,50 @@
 package: github.com/3rdStone/ethermint2
 import:
-- package: github.com/tendermint/tendermint
-  version: 0.15.x
-- package: github.com/tendermint/tmlibs
-  version: 0.6.x
+
+
+#
 - package: github.com/tendermint/abci
-  version: 0.9.x
+  version: develop
+  subpackages:
+  - server
+  - types
+- package: github.com/cosmos/cosmos-sdk
+  version: develop
+- package: github.com/tendermint/iavl
+  version: develop
+- package: github.com/tendermint/go-crypto
+  version: remove_ledger
+  subpackages:
+  - cmd
+  - keys
+- package: github.com/tendermint/go-wire
+  version: develop
+  subpackages:
+  - data
+- package: github.com/tendermint/tendermint
+  version: v0.15.0
+  subpackages:
+  - config
+  - node
+  - proxy
+  - rpc/client
+  - rpc/core/types
+  - rpc/lib/client
+  - rpc/lib/types
+  - types
+- package: github.com/tendermint/tmlibs
+  version: develop
+  subpackages:
+  - cli
+  - cli/flags
+  - common
+  - events
+  - log
+  - logger
+- package: github.com/gorilla/mux
+  version: ^1.5.0
+
+#
 - package: github.com/ethereum/go-ethereum
   version: f1.6.7
   repo: https://github.com/tendermint/go-ethereum.git
