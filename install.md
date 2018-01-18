@@ -23,3 +23,7 @@ vim tendermint/config.toml
 run:
 tendermint --home ~/.ethermint/tendermint node
 ethermint --datadir ~/.ethermint --rpc --rpcaddr=0.0.0.0 --ws --wsaddr=0.0.0.0 --rpcapi eth,net,web3,personal,admin
+
+
+run--with-tendermint
+ethermint --datadir ~/.ethermint --rpc --rpcaddr=0.0.0.0 --ws --wsaddr=0.0.0.0 --rpcapi eth,net,web3,personal,admin --with-tendermint tendermint
