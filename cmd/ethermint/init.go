@@ -16,6 +16,7 @@ import (
 	"github.com/3rdStone/ethermint2/cmd/utils"
 
 	emtUtils "github.com/3rdStone/ethermint2/cmd/utils"
+	"fmt"
 )
 
 // nolint: gocyclo
@@ -35,6 +36,8 @@ func initCmd(ctx *cli.Context) error {
 	if canInvokeTendermintInit {
 		tendermintHome := filepath.Join(ethermintDataDir, "tendermint")
 		tendermintArgs := []string{"init", "--home", tendermintHome}
+
+		fmt.Printf("====> tendermintArgs %#s\n", tendermintArgs)
 		_, err = invokeTendermint(tendermintArgs...)
 		if err != nil {
 			ethUtils.Fatalf("tendermint init error: %v", err)
@@ -106,6 +109,12 @@ func invokeTendermintNoTimeout(args ...string) ([]byte, error) {
 
 func _invokeTendermint(ctx context.Context, args ...string) ([]byte, error) {
 	log.Info("Invoking `tendermint`", "args", args)
+
+	cmd1 := exec.CommandContext(ctx, "tendermint version")
+	aaa, err := cmd1.CombinedOutput()
+	log.Info("tendermint version : %s, %s", aaa, err)
+
+
 	cmd := exec.CommandContext(ctx, "tendermint", args...)
 	return cmd.CombinedOutput()
 }

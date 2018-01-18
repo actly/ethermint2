@@ -8,24 +8,26 @@ VERSION_TAG=0.5.3
 
 all: install test
 
+# github.com/tendermint/ethermint/version.GitCommit=`git rev-parse HEAD`
+
 temp:
-	@go install \
-		--ldflags "-X github.com/tendermint/ethermint/version.GitCommit=`git rev-parse HEAD`" \
-		./cmd/ethermint
+	echo "start..."
+	@go install ./cmd/ethermint
+	echo "end..."
 
 install: get_vendor_deps
 	@go install \
-		--ldflags "-X github.com/tendermint/ethermint/version.GitCommit=`git rev-parse HEAD`" \
+		--ldflags "-X github.com/3rdStone/ethermint2/version.GitCommit=`git rev-parse HEAD`" \
 		./cmd/ethermint
 
 build:
 	@go build \
-		--ldflags "-X github.com/tendermint/ethermint/version.GitCommit=`git rev-parse HEAD`" \
+		--ldflags "-X github.com/3rdStone/ethermint2/version.GitCommit=`git rev-parse HEAD`" \
 		-o ./build/ethermint ./cmd/ethermint
 
 build_static:
 	@go build \
-		--ldflags "-extldflags '-static' -X github.com/tendermint/ethermint/version.GitCommit=`git rev-parse HEAD`" \
+		--ldflags "-extldflags '-static' -X github.com/3rdStone/ethermint2/version.GitCommit=`git rev-parse HEAD`" \
 		-o ./build/ethermint ./cmd/ethermint
 
 build_race:
@@ -36,18 +38,18 @@ dist:
 	@BUILD_TAGS='$(BUILD_TAGS)' sh -c "'$(CURDIR)/scripts/dist.sh'"
 
 docker_build_develop:
-	docker build -t "tendermint/ethermint:develop" -t "adrianbrink/ethermint:develop" -f scripts/docker/Dockerfile.develop .
+	docker build -t "3rdStone/ethermint2:develop" -t "adrianbrink/ethermint:develop" -f scripts/docker/Dockerfile.develop .
 
 docker_push_develop:
-	docker push "tendermint/ethermint:develop"
+	docker push "3rdStone/ethermint2:develop"
 	docker push "adrianbrink/ethermint:develop"
 
 docker_build:
-	docker build -t "tendermint/ethermint" -t "tendermint/ethermint:$(VERSION_TAG)" -t "adrianbrink/ethermint" -t "adrianbrink/ethermint:$(VERSION_TAG)" -f scripts/docker/Dockerfile .
+	docker build -t "3rdStone/ethermint2" -t "tendermint/ethermint:$(VERSION_TAG)" -t "adrianbrink/ethermint" -t "adrianbrink/ethermint:$(VERSION_TAG)" -f scripts/docker/Dockerfile .
 
 docker_push:
-	docker push "tendermint/ethermint:latest"
-	docker push "tendermint/ethermint:$(VERSION_TAG)"
+	docker push "3rdStone/ethermint2:latest"
+	docker push "3rdStone/ethermint2:$(VERSION_TAG)"
 	docker push "adrianbrink/ethermint:latest"
 	docker push "adrianbrink/ethermint:$(VERSION_TAG)"
 
@@ -80,7 +82,7 @@ metalinter: ensure_tools install
 draw_deps:
 # requires brew install graphviz or apt-get install graphviz
 	@go get github.com/RobotsAndPencils/goviz
-	@goviz -i github.com/tendermint/ethermint/cmd/ethermint -d 2 | dot -Tpng -o dependency-graph.png
+	@goviz -i github.com/3rdStone/ethermint2/cmd/ethermint -d 2 | dot -Tpng -o dependency-graph.png
 
 list_deps:
 	@go list -f '{{join .Deps "\n"}}' ./... | \
@@ -106,7 +108,7 @@ ensure_tools:
 	go get $(GOTOOLS)
 
 ethstats:
-	@git clone https://github.com/tendermint/eth-net-intelligence-api $(CURDIR)/ethstats
+	@git clone https://github.com/3rdStone/eth-net-intelligence-api $(CURDIR)/ethstats
 
 ethstats_setup: ethstats
 	@cd $(CURDIR)/ethstats && npm install && node scripts/configure.js

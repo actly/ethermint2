@@ -11,14 +11,17 @@ const Fix = 3
 
 var (
 	// Version is the full version string
-	Version = "0.5.3"
+	Version = "0.5.3.lv1"
 
 	// GitCommit is set with --ldflags "-X main.gitCommit=$(git rev-parse HEAD)"
 	GitCommit string
 )
 
 func init() {
-	if GitCommit != "" && len(GitCommit) >= 8 {
-		Version += "-" + GitCommit[:8]
-	}
+
+	GitCommit = "AAA"
+
+	//if GitCommit != "" && len(GitCommit) >= 8 {
+	//	Version += "-" + GitCommit[:8]
+	//}
 }

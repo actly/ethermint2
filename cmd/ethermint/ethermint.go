@@ -36,6 +36,9 @@ func ethermintCmd(ctx *cli.Context) error {
 	if canInvokeTendermintNode {
 		tendermintHome := tendermintHomeFromEthermint(ctx)
 		tendermintArgs := []string{"--home", tendermintHome, "node"}
+
+		fmt.Printf("====> canInvokeTendermintNode %#s\n", tendermintArgs)
+
 		go func() {
 			if _, err := invokeTendermintNoTimeout(tendermintArgs...); err != nil {
 				// We shouldn't go *Fatal* because
